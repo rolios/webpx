@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><!--HTML5 doctype-->
+
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Pragma" content="no-cache">
+<script type="text/javascript" charset="utf-8" src="intelxdk.js"></script>
+<script type="text/javascript" language="javascript">
+    // This event handler is fired once the intel libraries are ready
+    function onDeviceReady() {
+        //hide splash screen now that our app is ready to run
+        intel.xdk.device.hideSplashScreen();
+        setTimeout(function () {
+            $.ui.launch();
+        }, 50);
+    }
+    //initial event handler to detect when intel is ready to roll
+    document.addEventListener("intel.xdk.device.ready", onDeviceReady, false);
+</script>
+<script src="js/appframework.ui.min.js"></script>
+<script>
+    $.ui.autoLaunch = false;
+    $.ui.useOSThemes = true; //Change this to false to force a device theme
+    $.ui.blockPageScroll();
+    $(document).ready(function () {
+        if ($.ui.useOSThemes && !$.os.ios && $("#afui").get(0).className !== "ios")
+            $("#afui").removeClass("ios");
+    });
+</script>
+<link href="css/icons.css" rel="stylesheet" type="text/css">
+<link href="css/af.ui.css" rel="stylesheet" type="text/css">
+<link href="css/app.css" rel="stylesheet" type="text/css">
+<script src="js/app.js"></script>
+</head>
+
+<div id="afui" class="ios">
+    <div id="header"></div>
+    <div id="content" style="">
+        <div class="panel" title="Fresh Photos" id="main" selected="selected" style="background-color: rgb(119, 119, 119);"
+        data-appbuilder-object="page">
+            <a class="button" href="#" style="width: 100%;" data-appbuilder-object="button"
+            data-transition="slide" id="refresh">Refresh</a>
+            <ul class="list" data-appbuilder-object="list" style="text-align: center;"></ul>
+        </div>
+        <div class="panel" title="Near Me" id="near" data-appbuilder-object="page" style="background-color: rgb(119, 119, 119);"><a class="button" href="#" style="width: 100%;" data-appbuilder-object="button"
+            data-transition="slide" id="refresh-near">Refresh</a>
+            <ul class="list" data-appbuilder-object="list" style="text-align: center;"></ul>
+        </div>
+        <div class="panel" title="Photo Detail" id="detail" data-appbuilder-object="page"
+        style="background-color: rgb(119, 119, 119);">
+            <div class="container" style="width: 100%; height: 100%; text-align: center;" data-appbuilder-object="container">
+                <div class="text_item" data-appbuilder-object="text" style="">Title:</div>
+                <img src="" style="max-width: 90%;" alt="Title" data-appbuilder-object="image"
+                class="" title="">
+            </div>
+        </div>
+    </div>
+    <div id="navbar"> <a href="#main" class="icon new">Fresh</a><a href="#near" class="icon location">Near</a>
+    </div>
+
+
+</div>
+
+
+
+
+
+</html>
